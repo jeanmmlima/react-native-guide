@@ -5,7 +5,6 @@
 Para executar os projetos do repositório, você vai precisar dos módulos necessários: *node_modules* deve estar dentro do diretório do projeto desejado.
 Para obter *node_modules*: 
 1. Crie um novo projeto react native como descrito nos próximos tópicos, acesse o diretório do projeto, copie o diretório *node_modules* e cole-o no diretório do projeto que você deseja executar. 
-2. A segunda opção é: Baixe *node_modules.zip* e extraia para dentro do diretório do projeto que você deseja executar.
 
 ## Configração do Ambiente
 
