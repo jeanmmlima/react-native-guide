@@ -1,5 +1,12 @@
 # Guia Básico React Native
 
+## Excutando projetos do repositório
+
+Para executar os projetos do repositório, você vai precisar dos módulos necessários: *node_modules* deve estar dentro do diretório do projeto desejado.
+Para obter *node_modules*: 
+1. Crie um novo projeto react native como descrito nos próximos tópicos, acesse o diretório do projeto, copie o diretório *node_modules* e cole-o no diretório do projeto que você deseja executar. 
+2. A segunda opção é: Baixe *node_modules.zip* e extraia para dentro do diretório do projeto que você deseja executar.
+
 ## Configração do Ambiente
 
 1. Instalar versão mais recente LTS Node.js: [aqui](https://nodejs.org/en/). A versão utilizada para desenvolvimento do guia foi a 14.17. Para testar se o Node foi instalado corretamente, abra o terminal e execute abaixo. Deve retornar a versão do Node que foi instalada.
