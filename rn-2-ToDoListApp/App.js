@@ -15,6 +15,9 @@ export default function App() {
   /* */
   const [listaTarefas, setListaTarefas] = useState([]);
 
+  //para o modal
+  const [isAddMode, setIsAddMode] = useState(false)
+
   /* função para chamar setTarefa 
   function tarefaInputHandler(textoTarefa){
     setTarefa(textoTarefa);
@@ -54,6 +57,7 @@ export default function App() {
     setListaTarefas(novaLista => [...listaTarefas,
     { id: Math.random().toString(), value: descricao }
     ]);
+    setIsAddMode(false);
   };
 
   const removeTarefa = taskId => {
@@ -61,6 +65,9 @@ export default function App() {
       //filter retorna um novo array baseado no array qe o chama com um critério assado nos parametros
       return listaTarefas.filter((task) => task.id !== taskId);
     });
+  }
+  const closeAddTarefa = () => {
+    setIsAddMode(false);
   }
 
   return (
@@ -79,7 +86,8 @@ export default function App() {
       {/* 
       COM Ccomponente externo
       */}
-      <TarefaInput onAddTarefa={addTarefaCE}/>
+      <Button title='Add Nova Tarefa' onPress={() => setIsAddMode(true)}/>
+      <TarefaInput onAddTarefa={addTarefaCE} visible={isAddMode} onCancel={closeAddTarefa}/>
       <View>
         {/* ScrollView: desliza a tela (vertical e horizontal) para navegar no app
           Não é eficiente quando se tem muitos dados. Para isso, utilzia-se a FlatList
