@@ -56,6 +56,13 @@ export default function App() {
     ]);
   };
 
+  const removeTarefa = taskId => {
+    setListaTarefas(listaTarefas => {
+      //filter retorna um novo array baseado no array qe o chama com um critério assado nos parametros
+      return listaTarefas.filter((task) => task.id !== taskId);
+    });
+  }
+
   return (
     <View style={styles.screen /*{padding: 10}*/}>
       {/* 
@@ -93,14 +100,16 @@ export default function App() {
 
         }
         <FlatList
-          data={listaTarefas} renderItem={task => 
+          keyExtractor={(item, index) => item.id}
+          data={listaTarefas} 
+          renderItem={task => 
             /* sem componente externo
             <View style={//styles.listaItem}>
               <Text>{task.item.value}</Text>
              </View>)} /> 
             */
            //com componente criado externamente
-           <TarefaItem title={task.item.value}/>
+           <TarefaItem onDelete={removeTarefa.bind(this,task.item.id)} title={task.item.value}/>
           } />
 
       </View>
