@@ -21,6 +21,7 @@ import Card from "../components/Card";
 import colors from "../constants/colors";
 import Input from "../components/Input";
 import NumberContainer from "../components/NumberContainer";
+import BodyText from "../components/BodyText";
 
 const StartGameScreen = props => {
 
@@ -59,7 +60,7 @@ const StartGameScreen = props => {
     if (confimed) {
         confirmedOutput = (
             <Card style={styles.summaryContainer}>
-                <Text>You selected</Text>
+                <BodyText>You selected</BodyText>
                 <NumberContainer>
                     {selectedNumber}
                 </NumberContainer>
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         marginVertical: 10,
+        fontFamily: 'open-sans-bold'
     },
     btnContainer: {
         flexDirection: "row",

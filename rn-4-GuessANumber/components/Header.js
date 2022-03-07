@@ -21,7 +21,8 @@ const Header = props => {
     },
     headerTitle:{
         color:'black',
-        fontSize: 18
+        fontSize: 18,
+        fontFamily: 'open-sans-bold'
     },
   });
 
