@@ -76,7 +76,10 @@ export default function App() {
       <Text>2</Text>
       </View>
       <View style={styles.box3}>
-      <Text>3</Text>
+      <Text style={{
+        fontSize: 20,
+        fontWeight: 'bold',
+      }}>3</Text>
       </View>
     </View>
     
