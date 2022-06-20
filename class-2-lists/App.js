@@ -23,19 +23,19 @@ export default function App() {
   return (
     <View style={style.screen}>
      
-        <TextInput placeholder='Nova Tarefa'
+        <TextInput style={style.input} placeholder='Nova Tarefa'
           onChangeText={tarefaInputHandler} //o parametro textoTarefa vai ser os caracteres digitados
           value={tarefa} />
-        <View>
+        <View style={style.botao}>
           <Button title='Adicionar Tarefa'
-            onPress={addTarefaHandler} />
+            onPress={addTarefaHandler} color={'black'}/>
         </View>
         <FlatList
           keyExtractor={(item, index) => item.id}
           data={listaTarefas} 
           renderItem={task => 
-            <View>
-              <Text>{task.item.value}</Text>
+            <View style={style.listaItem}>
+              <Text style={style.textoItem}>{task.item.value}</Text>
              </View>} /> 
     </View>
 
@@ -46,11 +46,36 @@ export default function App() {
 const style = StyleSheet.create({
 
   screen: {
-    paddingTop: 50,
-    flexDirection: 'column',
-    width: '100%',
-    height: 300,
-    justifyContent: 'flex-start',
-    alignItems: 'center'
+    paddingTop: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'lightyellow',
+    flex: 1,
+  },
+
+  input:{
+    width: '80%',
+    borderWidth: 1,
+    borderColor: 'black',
+    padding: 10,
+  },
+
+  botao:{
+    width: '40%',
+    paddingVertical: 10,
+  },
+
+  listaItem: {
+    width: 200,
+    padding: 10,
+    marginVertical: 10,
+    backgroundColor: 'lightgray',
+    borderWidth: 1,
+    borderColor: 'black',
+  },
+
+  textoItem: {
+    fontSize: 16,
+    fontWeight: 'bold',
   }
 })
