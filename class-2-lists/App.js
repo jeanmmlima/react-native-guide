@@ -1,44 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { Button, FlatList, SafeAreaView, StyleSheet, Switch, SwitchBase, Text, TextInput, View } from 'react-native';
+
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
+import { Detail } from './pages/Detail';
+import {Home} from './pages/Home';
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-
-  const [tarefa, setTarefa] = useState('');
-  const [listaTarefas, setListaTarefas] = useState([]);
-
-  const tarefaInputHandler = (textoTarefa) => {
-    setTarefa(textoTarefa);
-  };
-
-  const addTarefaHandler = () => {
-    console.log(tarefa)
-    setListaTarefas(novaLista => [...listaTarefas,
-    { id: Math.random().toString(), value: tarefa }
-    ]);
-  }
-
-  
-
   return (
-    <View style={style.screen}>
-     
-        <TextInput style={style.input} placeholder='Nova Tarefa'
-          onChangeText={tarefaInputHandler} //o parametro textoTarefa vai ser os caracteres digitados
-          value={tarefa} />
-        <View style={style.botao}>
-          <Button title='Adicionar Tarefa'
-            onPress={addTarefaHandler} color={'black'}/>
-        </View>
-        <FlatList
-          keyExtractor={(item, index) => item.id}
-          data={listaTarefas} 
-          renderItem={task => 
-            <View style={style.listaItem}>
-              <Text style={style.textoItem}>{task.item.value}</Text>
-             </View>} /> 
-    </View>
-
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Tarefas" component={Home} options={{title: 'Lista de Tarefas'}}/>
+        <Stack.Screen name="Detail" component={Detail} options={{title: 'Detalhe Tarefa'}}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
