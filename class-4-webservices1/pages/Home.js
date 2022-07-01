@@ -1,55 +1,49 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { Button, FlatList, SafeAreaView, StyleSheet, Switch, SwitchBase, Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { useState, useEffect } from 'react';
+import { Button, ActivityIndicator, FlatList, SafeAreaView, StyleSheet, Switch, SwitchBase, Text, TextInput, View, TouchableOpacity } from 'react-native';
 
 
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
 
-  const [tarefa, setTarefa] = useState('');
-  const [listaTarefas, setListaTarefas] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setLoading] = useState(true)
 
-  const tarefaInputHandler = (textoTarefa) => {
-    setTarefa(textoTarefa);
-  };
-
-  const addTarefaHandler = () => {
-    console.log(tarefa)
-    setListaTarefas(novaLista => [...listaTarefas,
-    { id: Math.random().toString(), value: tarefa }
-    ]);
+  const Item = (props) => {
+    return (
+      <TouchableOpacity onPress={() => { navigation.navigate('Detail', { id: props.item.id }) }}>
+        <View style={styles.item}>
+          <Text style={styles.titulo}>{props.item.title}</Text>
+        </View>
+      </TouchableOpacity>
+    )
   }
 
-  
+  const getPostsNaAPI = async () => {
+    try {
+      setLoading(true)
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+      const posts = await response.json()
+      setPosts(posts)
+    } catch (error) {
+      setPosts([])
+      alert('Falha ao acessar servidor. Tente novamente mais tarde!')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    getPostsNaAPI()
+  }, []);
 
   return (
-    <SafeAreaView style={style.screen}>
-
-
-      <View style={style.container}>
-      
-      
-          <TextInput placeholder='Nova Tarefa'
-            onChangeText={tarefaInputHandler} //o parametro textoTarefa vai ser os caracteres digitados
-            value={tarefa} style={style.input}/>
-
-            <Button title='Adicionar Tarefa'
-              onPress={addTarefaHandler} />
-
-          <View style={style.list}>
-          <FlatList
-            keyExtractor={(item, index) => item.id}
-            data={listaTarefas} 
-            renderItem={task => 
-              <TouchableOpacity onPress={() => { navigation.navigate('Detail', { tarefa: task.item.value }) }}>
-              <View style={style.listItem}>
-                
-                  <Text style={style.textItem}>{task.item.value}</Text>
-                
-              </View></TouchableOpacity>} /> 
-          </View>
-
-        </View>
+    <SafeAreaView style={styles.container}>
+      {isLoading
+        ? <ActivityIndicator />
+        : <FlatList data={posts} renderItem={Item} keyExtractor={item => item.id} />
+      }
+      <StatusBar style="auto" />
     </SafeAreaView>
 
   );
@@ -58,63 +52,21 @@ const Home = ({navigation}) => {
 
 
 
-const style = StyleSheet.create({
-
-  appBar:{
-    width: '100%',
-    height: 100,
-    backgroundColor: 'pink',
-  },
-  
-
-  screen: {
-    padding: 10,
+const styles = StyleSheet.create({
+  container: {
     flex: 1,
-    flexDirection: 'column',
-  },
-
-  container:{
-    flex: 1,padding: 10, margin: 10,
-    alignItems: 'center'
-  },
-
-  input: {
-    width: '80%',
-    borderColor: '#000',
-    borderWidth: 1,
-    padding: 10,
-  },
-
-  button: {
-    width: '60%', backgroundColor: '#f7287b', margin:10,
-    borderBottomColor: 'black', borderWidth: 1, padding: 10, borderRadius: 5,
-    
-  },
-
-  list:{
-    margin: 10,
-    width: '80%',
-    flexDirection: 'column',
-  },
-  
-  listItem:{
-    padding: 10,
-    margin: 10,
-    width: '100%',
-    backgroundColor: '#46d',
+    backgroundColor: '#ffD',
     alignItems: 'center',
-
+    justifyContent: 'center',
   },
-
-  textItem:{
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 16,
+  item: {
+    backgroundColor: '#0AE',
+    padding: 20,
+    margin: 8
+  },
+  titulo: {
+    color: 'white'
   }
+});
 
-
-
-
-})
-
-export { Home}
+export { Home }
