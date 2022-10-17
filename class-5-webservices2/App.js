@@ -13,8 +13,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Posts" component={Home} options={{title: 'Lista de Posts'}}/>
-        <Stack.Screen name="Detail" component={Detail} options={{title: 'Detalhes do Post'}}/>
+        <Stack.Screen name="Users" component={Home} options={{title: 'Lista de usuários'}}/>
+        <Stack.Screen name="Detail" component={Detail} options={{title: 'Detalhes do usuário'}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

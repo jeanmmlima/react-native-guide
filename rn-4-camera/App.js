@@ -1,11 +1,12 @@
-import { Camera, CameraType } from 'expo-camera';
+import { Camera, CameraType, FlashMode, WhiteBalance } from 'expo-camera';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { Button, StyleSheet, Text, View, Image } from 'react-native';
+import { Button, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null)
   const [type, setType] = useState(CameraType.back)
+  const [flash, setFlash] = useState(FlashMode.off)
   const [foto, setFoto] = useState(null)
 
   let camera
@@ -20,6 +21,14 @@ export default function App() {
       setType(CameraType.front)
     } else {
       setType(CameraType.back)
+    }
+  }
+
+  async function toogleFlash() {
+    if (flash === FlashMode.off) {
+      setFlash(FlashMode.on)
+    } else {
+      setFlash(FlashMode.off)
     }
   }
 
@@ -43,9 +52,29 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Camera ref={ref => camera = ref} style={styles.camera} type={type}></Camera>
-      <Button title="Alternar" onPress={() => { flipCamera() }}></Button>
-      <Button title="Tira Foto" onPress={() => { takePicture() }}></Button>
+      <Camera ref={ref => camera = ref} style={styles.camera} type={type} flashMode={flash}>
+      <Button title="Alternar"  onPress={() => { flipCamera() }}></Button>
+
+      <TouchableOpacity title="Alternar" style={styles.botao} onPress={() => { flipCamera()  }}>
+      <View style={styles.customButtom}>
+            <Text  style={styles.texto}>Flip Camera</Text>
+          </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity title="Flash" style={styles.botao} onPress={() => { toogleFlash()  }}>
+      <View style={styles.customButtom}>
+            <Text  style={styles.texto}>Flash</Text>
+          </View>
+      </TouchableOpacity>
+      
+      <TouchableOpacity title="Tira Foto" style={styles.botaoTakePhoto} onPress={() => { takePicture() }}>
+      <View style={styles.customButtom}>
+            <Text  style={styles.texto}>Tirar Foto</Text>
+          </View>
+      </TouchableOpacity>
+
+      </Camera>
+     
       <Image style={{ width: 100, height: 100 }} source={{ uri: foto && foto.uri }}></Image>
     </View>
   );
@@ -59,7 +88,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   camera: {
+    flex: 1,
     width: 400,
     height: 400
+  },
+  botaoTakePhoto: {
+    flex: 1,
+    position: 'absolute',
+    bottom: 20,
+    alignSelf: 'center',
+  },
+  botao: {
+    marginTop: 30,
+    marginLeft: 30,
+    flexDirection: 'row',
+    justifyContent: 'start',
+  },
+  texto: {
+    color: 'white',
+    
+  },
+  customButtom: {
+    backgroundColor: 'black',
+    padding: 2,
   }
 });

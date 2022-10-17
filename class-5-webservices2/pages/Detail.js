@@ -4,18 +4,18 @@ import { useState, useEffect } from 'react';
 
 const Detail = ({navigation, route}) => {
 
-  const [post, setPost] = useState([]);
+  const [user, setUser] = useState([]);
   const [isLoading, setLoading] = useState(true)
 
-  const getPostNaAPI = async () => {
+  const getUserNaAPI = async () => {
     try {
       setLoading(true)
-      const uri = 'https://jsonplaceholder.typicode.com/posts/'+route.params.id;
+      const uri = 'https://jsonplaceholder.typicode.com/users/'+route.params.id;
       const response = await fetch(uri);
-      const post = await response.json()
-      setPost(post)
+      const user = await response.json()
+      setUser(user)
     } catch (error) {
-      setPost([])
+      setUser([])
       alert('Falha ao acessar servidor. Tente novamente mais tarde!')
     } finally {
       setLoading(false)
@@ -23,7 +23,7 @@ const Detail = ({navigation, route}) => {
   }
 
   useEffect(() => {
-    getPostNaAPI()
+    getUserNaAPI()
   }, []);
 
     return (
@@ -31,9 +31,13 @@ const Detail = ({navigation, route}) => {
           {isLoading
         ? <ActivityIndicator />
         : <View>
-            <Text style={styles.text}> ID: {post.id}</Text>
-            <Text style={styles.text}>Titulo: {post.title}</Text>
-            <Text style={styles.text}>Corpo: {post.body}</Text>
+            <Text style={styles.text}> Nome: {user.name}</Text>
+            <Text style={styles.text}> Username: {user.username}</Text>
+            <Text style={styles.text}> Email: {user.email}</Text>
+            <Text style={styles.text}> Contato: {user.phone}</Text>
+            <Text style={styles.text}> Website: {user.website}</Text>
+            <Text style={styles.text}> Endereço </Text>
+            <Text style={styles.text}> {user.address.street}, {user.address.city}, {user.address.zipcode} </Text>
           </View>
           
         } 
