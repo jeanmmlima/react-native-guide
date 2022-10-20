@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Button, FlatList, SafeAreaView, StyleSheet, Switch, SwitchBase, Text, TextInput, View } from 'react-native';
 import MyButton from './components/MyButton';
+import MyTextInput from './components/MyTextInput';
 import WelcomeComponent from './components/Welcome';
 import WelcomeComponentProps from './components/Welcome2';
 
@@ -22,6 +23,7 @@ export default function App() {
       <Button title='Clique-me' onPress={onClick}/>
       <MyButton title='Click' onClick={onClick} />
       <Switch value={ligado} onValueChange={() => {setLigado(!ligado)}}/>
+      <MyTextInput />
     </View>
     
 
