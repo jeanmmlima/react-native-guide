@@ -5,6 +5,7 @@ import MyButton from './components/MyButton';
 import MyTextInput from './components/MyTextInput';
 import WelcomeComponent from './components/Welcome';
 import WelcomeComponentProps from './components/Welcome2';
+import Mega from './components/mega/Mega';
 
 export default function App() {
 
@@ -18,13 +19,10 @@ export default function App() {
 
 
   return (
-    <View style={style.screen}>
-      <Text>Olá, mundo!</Text>
-      <Button title='Clique-me' onPress={onClick}/>
-      <MyButton title='Click' onClick={onClick} />
-      <Switch value={ligado} onValueChange={() => {setLigado(!ligado)}}/>
-      <MyTextInput />
-    </View>
+    
+    <SafeAreaView style={style.screen}>
+      <Mega qtdeNumeros={10}/> 
+    </SafeAreaView>
     
 
   );
@@ -48,8 +46,13 @@ const style = StyleSheet.create({
     paddingTop: 50,
     flexDirection: 'column',
     width: '100%',
-    height: 300,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center'
-  }
+  },
+  App: {
+    flexGrow: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20
+},
 })
