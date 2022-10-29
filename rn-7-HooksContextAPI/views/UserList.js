@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FlatList, Text, View, StyleSheet, Alert } from "react-native";
 import { ListItem, Avatar, Button, Icon } from "react-native-elements"
-import users from '../data/users'
+import UsersContext from "../context/UsersContext";
+//import users from '../data/users'
 
 //componente funcional
 export default props => {
     //console.warn(Object.keys(props))  dados que são passados como atributos para o componente
+
+    
+    /*
+        ContextAPI --> quando a árvore de componentes é grande e
+        você precisa compartilhar o estado/dados entre diversos componentes
+        PROVEDOR de informações
+
+        Além disso, usar os hooks para gerenciar o estado com useReducer
+    */
+   const { state } = useContext(UsersContext)
+   
+
 
     function confirmUserDeletion(user) {
         Alert.alert('Excluir Usuário', 'Deseja excluir o usuário?', [
@@ -63,7 +76,7 @@ export default props => {
         <View>
             <FlatList 
                 keyExtractor={user => user.id.toString()}
-                data={users}
+                data={state.users}
                 renderItem={getUserItem}
             />
 
