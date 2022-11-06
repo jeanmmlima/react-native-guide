@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import { Text, View, TextInput, StyleSheet, Button } from "react-native";
+import UsersContext from "../context/UsersContext";
 
 //componente funcional
 export default ({route, navigation}) => {
@@ -7,6 +9,7 @@ export default ({route, navigation}) => {
 
     //usando o primeiro HOOK para gerencia do estado
     const [user, setUser] = useState(route.params ? route.params : {})
+    const {dispatch} = useContext(UsersContext)
     return (
         <View style={style.form}>
             <Text>Nome</Text>
@@ -23,7 +26,7 @@ export default ({route, navigation}) => {
                 placeholder="Informe o E-mail"
                 value={user.email}
             />
-            <Text>URL do Avatar</Text>
+            <Text>URL do Avatar{/*pixabay*/}</Text>
             <TextInput
                 style={style.input}
                 onChangeText={avatarUrl => setUser({...user, avatarUrl})}
@@ -33,6 +36,10 @@ export default ({route, navigation}) => {
             <Button
                 title="Salvar"
                 onPress={() => {
+                    dispatch({
+                        type: user.id ? 'updateUser' : 'createUser',
+                        payload: user,
+                    })
                     navigation.goBack()
                 }}
             />

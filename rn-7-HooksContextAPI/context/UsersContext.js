@@ -7,7 +7,34 @@ const UsersContext = createContext({})
 /* Estado Inicial*/
 const initialState = { users }
 
+/* 
+    actions 
+*/
+const actions = {
+    createUser(state,action){
+        const user = action.payload
+        user.id = Math.random()
+        return{
+            ...state,
+            users: [...state.users, user],
+        }
+    },
+    updateUser(state,action){
+        const updated = action.payload
+        return {
+            ...state,
+            users: state.users.map(u => u.id === updated.id ? updated : u)
+        }
 
+    },
+    deleteUser(state,action){
+        const user = action.payload
+            return {
+                ...state,
+                users: state.users.filter(u => u.id !== user.id)
+            }
+    }
+}
 
 /*
 Retornar um Provider
@@ -31,17 +58,8 @@ export const UsersProvider = props => {
     */
     function reducer(state, action){
         
-        if(action.type === 'deleteUser'){
-            const user = action.payload
-            //retorna o estado atual, excluido o usuario que veio pelo payload
-            return {
-                //operador spread caso o estado tenha mais de um atributo
-                //nesse caso é opcional pq só temos um atributo (users)
-                ...state,
-                users: state.users.filter(u => u.id !== user.id)
-            }
-        }
-        return state
+        const fn = actions[action.type] //verifica a ação
+        return fn ? fn(state,action) : state //retorna a função ou o estado atual caso não seja função
     }   
 
     /*
