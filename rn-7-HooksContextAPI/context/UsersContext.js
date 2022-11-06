@@ -7,6 +7,8 @@ const UsersContext = createContext({})
 /* Estado Inicial*/
 const initialState = { users }
 
+
+
 /*
 Retornar um Provider
 
@@ -28,9 +30,19 @@ export const UsersProvider = props => {
 
     */
     function reducer(state, action){
-        console.warn(action)
+        
+        if(action.type === 'deleteUser'){
+            const user = action.payload
+            //retorna o estado atual, excluido o usuario que veio pelo payload
+            return {
+                //operador spread caso o estado tenha mais de um atributo
+                //nesse caso é opcional pq só temos um atributo (users)
+                ...state,
+                users: state.users.filter(u => u.id !== user.id)
+            }
+        }
         return state
-    }
+    }   
 
     /*
     Integrar o Contexto com o UseReducer

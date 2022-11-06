@@ -30,9 +30,11 @@ export default props => {
                     //console.warn("delete" + user.id) - agora uso o dispatch
                     /* 
                         No dispatch é passado uma ACTION: um objeto
-                        com tipo e um PAYLOAD: dado que é passado junto com a ACTION.
+                        com TIPO e um PAYLOAD: dado que é passado junto com a ACTION.
 
-                        A action é o parametro da função reducer que por usa vez é passada como parametro para hook useReduce.
+                        A action é o parametro da função reducer que por usa vez é passada como parametro para hook useReducer.
+                        
+                        O dispatch dispara a ação, invocando a função reducer definida.
                     */
                     dispatch({
                         type: 'deleteUser', //especifica a ação
