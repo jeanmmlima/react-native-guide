@@ -15,8 +15,10 @@ export default props => {
         PROVEDOR de informações
 
         Além disso, usar os hooks para gerenciar o estado com useReducer
+
+        Como agora também temos o dispatch no contexto, podemos acesso-lo
     */
-   const { state } = useContext(UsersContext)
+   const { state, dispatch } = useContext(UsersContext)
    
 
 
@@ -25,7 +27,17 @@ export default props => {
             {
                 text: 'Sim',
                 onPress() {
-                    console.warn("delete" + user.id)
+                    //console.warn("delete" + user.id) - agora uso o dispatch
+                    /* 
+                        No dispatch é passado uma ACTION: um objeto
+                        com tipo e um PAYLOAD: dado que é passado junto com a ACTION.
+
+                        A action é o parametro da função reducer que por usa vez é passada como parametro para hook useReduce.
+                    */
+                    dispatch({
+                        type: 'deleteUser', //especifica a ação
+                        payload: user, //dado necessário para ação
+                    })
                 }
             },
             {
