@@ -56,6 +56,10 @@ const Detail = ({ navigation, route }) => {
     navigation.navigate('ListClients', { credentials: route.params.credentials});
   }
 
+  const loadForm = () => {
+    navigation.navigate('FormClient',{ credentials: route.params.credentials});
+  }
+
   useEffect(() => {
     setCurrentUser(route.params.credentials);
     console.log(currentUser);
@@ -66,6 +70,7 @@ const Detail = ({ navigation, route }) => {
 
           <Text style={styles.text}> Login: {currentUser.login}</Text>
           <Button title="Ver lista de clientes" onPress={onClick}/>
+          <Button title="Novo cliente" onPress={loadForm}/>
         
     </View>
   );

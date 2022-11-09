@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState, useEffect } from 'react';
 import { Button, ActivityIndicator, FlatList, SafeAreaView, StyleSheet, Switch, SwitchBase, Text, TextInput, View, TouchableOpacity } from 'react-native';
+import {} from 'react'
 import UserController from '../controller/UserController';
 
 
@@ -41,6 +42,7 @@ const Home = ({ navigation }) => {
     }
   }
 
+
   return (
     <SafeAreaView style={styles.container}>
       {isLoading
@@ -54,6 +56,7 @@ const Home = ({ navigation }) => {
         onChangeText={(value) => {setLogin(value)}}/>
         <Text>Senha</Text>
         <TextInput 
+        secureTextEntry={true}
         placeholder='Informe a senha'
         style={styles.input} 
         value={passwd} 
