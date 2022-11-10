@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Button, ActivityIndicator, FlatList, SafeAreaView, StyleSheet, Switch, SwitchBase, Text, TextInput, View, TouchableOpacity } from 'react-native';
 import {} from 'react'
 import UserController from '../controller/UserController';
+import UsuarioController from '../controller/UserController';
 
 
 
@@ -12,6 +13,24 @@ const Home = ({ navigation }) => {
 
   const [login, setLogin] = useState('');
   const [passwd, setPasswd] = useState('');
+
+  var controller = new UsuarioController();
+
+  const authUserMod = async () => {
+    try {
+      setLoading(true)
+      console.log(controller);
+      credentials = controller.authUser(login,passwd);
+      console.log(credentials);
+      if(credentials != null){
+        navigation.navigate('Detail', { credentials: credentials}) ;
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+
+    }
+  }
 
   const authUser = async () => {
     try {
@@ -61,7 +80,7 @@ const Home = ({ navigation }) => {
         style={styles.input} 
         value={passwd} 
         onChangeText={(value) => {setPasswd(value)}}/>
-        <Button title='Entrar' onPress={authUser}/>
+        <Button title='Entrar' onPress={authUserMod}/>
         <StatusBar style="auto" />
         </View> 
       }
