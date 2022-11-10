@@ -2,8 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { useState, useEffect } from 'react';
 import { Button, ActivityIndicator, FlatList, SafeAreaView, StyleSheet, Switch, SwitchBase, Text, TextInput, View, TouchableOpacity } from 'react-native';
 import {} from 'react'
-import UserController from '../controller/UserController';
-import UsuarioController from '../controller/UserController';
+import UserController from '../api/user_request';
+import UsuarioController from '../api/user_request';
 
 
 
@@ -19,9 +19,7 @@ const Home = ({ navigation }) => {
   const authUserMod = async () => {
     try {
       setLoading(true)
-      console.log(controller);
       credentials = controller.authUser(login,passwd);
-      console.log(credentials);
       if(credentials != null){
         navigation.navigate('Detail', { credentials: credentials}) ;
       }
