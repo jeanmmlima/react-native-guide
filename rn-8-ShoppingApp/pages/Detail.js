@@ -62,6 +62,7 @@ const Detail = ({ navigation, route }) => {
 
   useEffect(() => {
     setCurrentUser(route.params.credentials);
+    console.log(route.params.credentials);
     console.log(currentUser);
   }, []);
 

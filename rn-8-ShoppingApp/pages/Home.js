@@ -38,7 +38,9 @@ const Home = ({ navigation }) => {
         method: 'POST',
         headers: {
           Accept: 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'http://localhost:8080',
+          'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
         },
         body: JSON.stringify({
           login: login,
@@ -78,7 +80,7 @@ const Home = ({ navigation }) => {
         style={styles.input} 
         value={passwd} 
         onChangeText={(value) => {setPasswd(value)}}/>
-        <Button title='Entrar' onPress={authUserMod}/>
+        <Button title='Entrar' onPress={authUser}/>
         <StatusBar style="auto" />
         </View> 
       }
