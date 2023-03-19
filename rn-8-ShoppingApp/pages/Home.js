@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState, useEffect } from 'react';
 import { Button, ActivityIndicator, FlatList, SafeAreaView, StyleSheet, Switch, SwitchBase, Text, TextInput, View, TouchableOpacity } from 'react-native';
-import UserController from '../controller/UserController';
+import {} from 'react'
+import UserController from '../api/user_request';
+import UsuarioController from '../api/user_request';
 
 
 
@@ -12,6 +14,22 @@ const Home = ({ navigation }) => {
   const [login, setLogin] = useState('');
   const [passwd, setPasswd] = useState('');
 
+  var controller = new UsuarioController();
+
+  const authUserMod = async () => {
+    try {
+      setLoading(true)
+      credentials = controller.authUser(login,passwd);
+      if(credentials != null){
+        navigation.navigate('Detail', { credentials: credentials}) ;
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+
+    }
+  }
+
   const authUser = async () => {
     try {
       setLoading(true)
@@ -20,7 +38,9 @@ const Home = ({ navigation }) => {
         method: 'POST',
         headers: {
           Accept: 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'http://localhost:8080',
+          'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
         },
         body: JSON.stringify({
           login: login,
@@ -41,6 +61,7 @@ const Home = ({ navigation }) => {
     }
   }
 
+
   return (
     <SafeAreaView style={styles.container}>
       {isLoading
@@ -54,6 +75,7 @@ const Home = ({ navigation }) => {
         onChangeText={(value) => {setLogin(value)}}/>
         <Text>Senha</Text>
         <TextInput 
+        secureTextEntry={true}
         placeholder='Informe a senha'
         style={styles.input} 
         value={passwd} 

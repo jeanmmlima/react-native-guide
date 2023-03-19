@@ -1,13 +1,14 @@
 import { Camera, CameraType, FlashMode, WhiteBalance } from 'expo-camera';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { Button, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { Button, StyleSheet, Text, View, Image, TouchableOpacity, FlatList,SafeAreaView } from 'react-native';
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null)
   const [type, setType] = useState(CameraType.back)
   const [flash, setFlash] = useState(FlashMode.off)
   const [foto, setFoto] = useState(null)
+  const [fotos, setFotos] = useState([])
 
   let camera
 
@@ -36,6 +37,8 @@ export default function App() {
     if (!camera) return
     const photo = await camera.takePictureAsync()
     setFoto(photo)
+    pic = {id: Math.random().toString(), ph: photo}
+    setFotos([...fotos, pic])
   }
 
   useEffect(() => {
@@ -51,6 +54,7 @@ export default function App() {
   }
 
   return (
+    
     <View style={styles.container}>
       <Camera ref={ref => camera = ref} style={styles.camera} type={type} flashMode={flash}>
       <Button title="Alternar"  onPress={() => { flipCamera() }}></Button>
@@ -76,19 +80,39 @@ export default function App() {
       </Camera>
      
       <Image style={{ width: 100, height: 100 }} source={{ uri: foto && foto.uri }}></Image>
+      <View style={styles.listaFotos}>
+      <FlatList
+      horizontal
+        data={fotos} 
+        keyExtractor={(item, index) => item.id}
+        renderItem={task => <Image style={{ width: 100, height: 100 }} source={{ uri: task.item.ph && task.item.ph.uri }}></Image>}
+      />
+      </View>
+      
     </View>
+    
+    
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  listaFotos: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
   camera: {
-    flex: 1,
+    flex: 4,
     width: 400,
     height: 400
   },

@@ -1,6 +1,10 @@
 import { Component } from "react";
 
-export const authUser = async (login, passwd) => {
+class UsuarioController {
+
+    
+    authUser = async (login,passwd) => {
+      
         try {
 
             const uri = 'http://localhost:8080/api/usuarios/auth'
@@ -28,4 +32,11 @@ export const authUser = async (login, passwd) => {
         } catch (error) {
             console.error(error);
         }
+        
     }
+}
+
+export default UsuarioController;
+
+
+    
