@@ -8,11 +8,10 @@ import WelcomeComponentProps from './components/Welcome2';
 
 export default function App() {
 
-  const [ligado, setLigado] = useState('false');
-
+ /*  const [ligado, setLigado] = useState('false'); */
   const onClick = () => {
     console.log("clicou!");
-    setLigado(!ligado);
+    /* setLigado(!ligado); */
   }
 
 
@@ -21,9 +20,9 @@ export default function App() {
     <View style={style.screen}>
       <Text>Olá, mundo!</Text>
       <Button title='Clique-me' onPress={onClick}/>
-      <MyButton title='Click' onClick={onClick} />
+     {/*  <MyButton title='Click' onClick={onClick} />
       <Switch value={ligado} onValueChange={() => {setLigado(!ligado)}}/>
-      <MyTextInput />
+      <MyTextInput /> */}
     </View>
     
 
@@ -39,9 +38,6 @@ function Welcome() {
   );
 }
 
-
-
-
 const style = StyleSheet.create({
 
   screen: {
@@ -50,6 +46,7 @@ const style = StyleSheet.create({
     width: '100%',
     height: 300,
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
+    margin: 10,
   }
 })

@@ -1,24 +1,22 @@
 import { Button, View, StyleSheet } from "react-native"
 
-const MyButton = props => { 
+const MyButton = props => {
 
-    return(
+    return (
         <View style={style.button}>
-        <Button title={props.title} onPress={props.onClick}/>
-    </View>
+            <Button title={props.title} onPress={props.onClick} />
+        </View>
     );
-    
+
 }
 
 const style = StyleSheet.create({
-    button:{
+    button: {
         padding: 10,
         margin: 5,
-        color: 'red',
-        backgroundColor: '#ccc'
-        
-    }
-  });
+        backgroundColor: '#caa',
 
-  export default MyButton;
-  
+    }
+});
+
+export default MyButton;
