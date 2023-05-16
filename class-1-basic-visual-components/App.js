@@ -9,13 +9,15 @@ export default function App() {
 
 
   return (
-    <View style={style.screen}>
-      <Text>Olá, mundo!</Text>
-      <Welcome />
-      <WelcomeComponent />
-      <WelcomeComponentProps text='Bem-vindo! Mensagem passada por propriedade.' />
-    </View>
-    
+    <SafeAreaView>
+      <View style={style.screen}>
+        <Text>Olá, mundo!</Text>
+        <Welcome />
+        <WelcomeComponent />
+        <WelcomeComponentProps text='Bem-vindo! Mensagem passada por propriedade.' />
+      </View>
+    </SafeAreaView>
+
 
   );
 }
@@ -23,7 +25,7 @@ export default function App() {
 function Welcome() {
   return (
     <View style={style.screen} >
-      <Text>Seja bem-vindo!</Text>
+      <Text style={style.textStyle}>Seja bem-vindo!</Text>
 
     </View>
   );
@@ -38,8 +40,10 @@ const style = StyleSheet.create({
     paddingTop: 50,
     flexDirection: 'column',
     width: '100%',
-    height: 300,
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
+  },
+  textStyle: {
+    fontSize: 28,
   }
 })

@@ -2,7 +2,7 @@ import {Text, View,StyleSheet } from 'react-native';
 const WelcomeComponent = () => {
     return (
       <View style={style.screen} >
-        <Text>Seja bem-vindo! Conteúdo do componente!</Text>
+        <Text>Seja bem-vindo! Conteúdo do componente 1!</Text>
   
       </View>
     );
@@ -10,10 +10,8 @@ const WelcomeComponent = () => {
   const style = StyleSheet.create({
 
     screen: {
-      paddingTop: 50,
-      flexDirection: 'column',
+      paddingTop: 20,
       width: '100%',
-      height: 300,
       justifyContent: 'flex-start',
       alignItems: 'center'
     }
