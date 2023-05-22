@@ -6,17 +6,9 @@ import MyTextInput from './components/MyTextInput';
 import WelcomeComponent from './components/Welcome';
 import WelcomeComponentProps from './components/Welcome2';
 import Mega from './components/mega/Mega';
+import Mega2 from './components/mega2/Mega2';
 
 export default function App() {
-
-  const [ligado, setLigado] = useState('false');
-
-  const onClick = () => {
-    console.log("clicou!");
-    setLigado(!ligado);
-  }
-
-
 
   return (
     
@@ -28,22 +20,11 @@ export default function App() {
   );
 }
 
-function Welcome() {
-  return (
-    <View style={style.screen} >
-      <Text>Seja bem-vindo!</Text>
-
-    </View>
-  );
-}
-
-
 
 
 const style = StyleSheet.create({
 
   screen: {
-    paddingTop: 50,
     flexDirection: 'column',
     width: '100%',
     justifyContent: 'center',

@@ -43,7 +43,7 @@ export default class Mega extends Component {
                 </Text>
                 <TextInput
                     keyboardType={'numeric'}
-                    style={{borderBottomWidth: 1}}
+                    style={Estilo.textInput}
                     placeholder="Qtde de Números"
                     value={`${this.state.qtdeNumeros}`}
                     onChangeText={this.alterarQtdeNumero}
@@ -56,7 +56,8 @@ export default class Mega extends Component {
                     marginTop: 20,
                     flexDirection: 'row',
                     flexWrap: 'wrap',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    alignItems: 'flex-start',
                 }}>
                     {this.exibirNumeros()}
                 </View>

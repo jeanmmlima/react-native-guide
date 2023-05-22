@@ -1,8 +1,18 @@
-import { StyleSheet } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
     txtG: {
         fontSize: 32,
         textAlign: "center",
+    },
+
+    textInput: {
+        fontSize: 30,
+        width: '25%',
+        borderBottomWidth: 1,
+        textAlign: 'center',
+        justifyContent: 'center',
+        margin: 20,
+        padding: 10
     }
 })
