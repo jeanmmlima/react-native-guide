@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text } from "react-native"
+import { View, StyleSheet, Text, Button } from "react-native"
 
 
 
@@ -9,6 +9,7 @@ const Detail = ({navigation, route}) => {
    return (
        <View style={styles.container}>
          <Text style={styles.text}>Tarefa: {route.params.tarefa}</Text>
+         <Button title="Voltar..." onPress={() => navigation.goBack()}></Button>
        </View>
      );
 
