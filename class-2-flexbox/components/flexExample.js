@@ -7,9 +7,18 @@ const Flex = () => {
         style={[
           styles.container,
           {
-            flexDirection: 'column',
+            flexDirection: 'row',
           },
         ]}>
+        <View style={{flex: 1, backgroundColor: 'red'}} />
+        <View style={{flex: 1, backgroundColor: 'darkorange'}} />
+        <View style={{flex: 1, backgroundColor: 'green'}} />
+        <View style={{flex: 1, backgroundColor: 'red'}} />
+        <View style={{flex: 1, backgroundColor: 'darkorange'}} />
+        <View style={{flex: 1, backgroundColor: 'green'}} />
+        <View style={{flex: 1, backgroundColor: 'red'}} />
+        <View style={{flex: 1, backgroundColor: 'darkorange'}} />
+        <View style={{flex: 1, backgroundColor: 'green'}} />
         <View style={{flex: 1, backgroundColor: 'red'}} />
         <View style={{flex: 1, backgroundColor: 'darkorange'}} />
         <View style={{flex: 1, backgroundColor: 'green'}} />

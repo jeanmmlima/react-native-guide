@@ -8,11 +8,15 @@ const FlexDirection = () => {
           styles.container,
           {
             flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'flex-end',
           },
         ]}>
         <View style={[styles.box, {backgroundColor: 'powderblue'}]} />
         <View style={[styles.box, {backgroundColor: 'skyblue'}]} />
-        <View style={[styles.box, {backgroundColor: 'steelblue'}]} />
+        <View style={[styles.box, {backgroundColor: 'skyblue'}]} />
+        
+
       </SafeAreaView>
     );
   };

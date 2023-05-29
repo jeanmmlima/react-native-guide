@@ -8,7 +8,7 @@ export default StyleSheet.create({
 
     textInput: {
         fontSize: 30,
-        width: '25%',
+        width: '50%',
         borderBottomWidth: 1,
         textAlign: 'center',
         justifyContent: 'center',

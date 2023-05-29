@@ -13,7 +13,7 @@ export default function App() {
   return (
     
     <SafeAreaView style={style.screen}>
-      <Mega qtdeNumeros={10}/> 
+      <Mega qtdeNumeros={10} limiteNumeros={15}/> 
     </SafeAreaView>
     
 

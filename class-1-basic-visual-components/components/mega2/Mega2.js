@@ -7,7 +7,8 @@ import { View, Text, TextInput, Button } from 'react-native'
 const Mega2 = props => {
 
     const [numeros, setNumeros] = useState([]);
-    const [qtdNumeros, setQtdNumeros] = useState(10);
+    const [qtdNumeros, setQtdNumeros] = useState(props.qtdNumeros);
+
 
     const alterarQtdeNumero = (qtde) => {
         setQtdNumeros(qtde);
