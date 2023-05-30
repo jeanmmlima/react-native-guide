@@ -41,13 +41,21 @@ const styles = StyleSheet.create({
     inputContainer: {
         //flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'
         //flex permite controlar o espaço utlizado. inputContainer com flex 1 vai ocupar todo o espaço disponível
-        flex: 1, justifyContent: 'center', alignItems: 'center'
+        flex: 1, 
+        justifyContent: 'center', 
+        alignItems: 'center'
     },
     input: {
-        width: '80%', borderBottomColor: 'black', borderWidth: 1, padding: 10, marginBottom: 10
+        width: '80%',
+         borderBottomColor: 'black', 
+         borderWidth: 1, 
+         padding: 10, 
+         marginBottom: 10
     },
     buttons: {
-        flexDirection: 'row', justifyContent:'space-between', width: '40%'
+        flexDirection: 'row', 
+        justifyContent:'space-between',
+         width: '40%'
     }
 })
 

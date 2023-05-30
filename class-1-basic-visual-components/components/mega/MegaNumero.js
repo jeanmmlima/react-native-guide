@@ -19,7 +19,6 @@ const style = StyleSheet.create({
         backgroundColor: '#000',
         justifyContent:'center',
         textAlign: 'center',
-        
         borderRadius: 25,
     },
     Num: {
