@@ -43,7 +43,6 @@ const Home = ({ navigation }) => {
         ? <ActivityIndicator />
         : <FlatList data={posts} renderItem={Item} keyExtractor={item => item.id} />
       }
-      <StatusBar style="auto" />
     </SafeAreaView>
 
   );

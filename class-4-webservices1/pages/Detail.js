@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-start',
     },
     text: {
-      fontSize: 20
+      fontSize: 20,
     }
   })
 
