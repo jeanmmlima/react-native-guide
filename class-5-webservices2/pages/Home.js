@@ -44,7 +44,6 @@ const Home = ({ navigation }) => {
         ? <ActivityIndicator />
         : <FlatList data={users} renderItem={Item} keyExtractor={item => item.id} />
       }
-      <StatusBar style="auto" />
     </SafeAreaView>
 
   );
@@ -55,19 +54,20 @@ const Home = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
     flex: 1,
+    flexDirection: 'column',
     backgroundColor: '#ffD',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'stretch',
   },
   item: {
     backgroundColor: '#0AE',
     padding: 20,
-    margin: 8,
+    margin: 10,
   },
   titulo: {
-    color: 'white'
+    color: 'white',
+    textAlign: 'right',
   }
 });
 
