@@ -67,19 +67,24 @@ const Home = ({ navigation }) => {
       {isLoading
         ? <ActivityIndicator />
         : <View style={styles.container}>
-        <Text>Login</Text>
+        <Text style={styles.labels}>Login</Text>
         <TextInput 
         placeholder='Informe o login'
         style={styles.input} 
         value={login} 
         onChangeText={(value) => {setLogin(value)}}/>
-        <Text>Senha</Text>
+        <Text style={styles.labels}>Senha</Text>
         <TextInput 
         secureTextEntry={true}
         placeholder='Informe a senha'
         style={styles.input} 
         value={passwd} 
         onChangeText={(value) => {setPasswd(value)}}/>
+        <TouchableOpacity onPress={authUser}>
+          <View style={styles.botao}>
+            <Text style={styles.labels}>Entrar</Text>
+          </View>
+        </TouchableOpacity>
         <Button title='Entrar' onPress={authUser}/>
         <StatusBar style="auto" />
         </View> 
@@ -116,6 +121,17 @@ const styles = StyleSheet.create({
     borderolor: 'black',
     borderWidth: 1,
     width: '80%',
+    fontSize: 28,
+  },
+  labels: {
+    fontSize: 28,
+  },
+  botao: {
+    width: 200,
+    height: 80,
+    backgroundColor: 'skyblue',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

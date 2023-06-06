@@ -1,7 +1,7 @@
 import { View, StyleSheet, Text, ActivityIndicator, FlatList, Alert } from "react-native"
 import { useState, useEffect } from 'react';
 import { setStatusBarStyle } from "expo-status-bar";
-import {ListItem, Icon, Button} from 'react-native-elements'
+import {ListItem, Icon, Button, Avatar} from 'react-native-elements'
 import { useIsFocused } from "@react-navigation/native";
 
 
@@ -126,8 +126,9 @@ const ListClients = ({ navigation, route }) => {
         onPress={() => loadForm(user)}
             
         > 
+             <Avatar rounded source={{ uri: 'https://cdn.pixabay.com/photo/2016/11/01/21/11/avatar-1789663_960_720.png'}} />   
             <ListItem.Content>
-                <ListItem.Title>nome: {user.nome}</ListItem.Title>
+                <ListItem.Title style={styles.text}>nome: {user.nome}</ListItem.Title>
                 <ListItem.Subtitle>cpf: {user.cpf}</ListItem.Subtitle>
             </ListItem.Content>
         </ListItem.Swipeable>
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   text: {
-    fontSize: 20
+    fontSize: 22
   },
   item: {
     backgroundColor: '#0AE',

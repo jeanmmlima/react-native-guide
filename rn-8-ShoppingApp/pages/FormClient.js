@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, TextInput, StyleSheet, Button } from "react-native";
+import { Text, View, TextInput, StyleSheet, Button, TouchableOpacity } from "react-native";
 
 
 const FormClient = ({ navigation, route }) => {
@@ -64,20 +64,35 @@ const FormClient = ({ navigation, route }) => {
     
     return (
         <View style={style.form}>
-            <Text>Nome</Text>
+            <Text style={style.text}>Nome</Text>
             <TextInput
                 style={style.input}
                 onChangeText={nome => setUser({...user, nome})} //operador spreed para pegar todos os atributos do usuário
                 placeholder="Informe o Nome"
                 value={user.nome}
             />
-            <Text>CPF</Text>
+            <Text style={style.text}>CPF</Text>
             <TextInput
                 style={style.input}
                 onChangeText={cpf => setUser({...user, cpf})}
                 placeholder="Informe o CPF"
                 value={user.cpf}
             />
+            <TouchableOpacity onPress={() => {
+                    if(user.id != null){
+                        console.log("DEVE ATUALIZAR");
+                       updateClient(); 
+                       navigation.navigate('ListClients', { credentials: route.params.credentials});
+                    } else {
+                        saveClient();
+                    }
+                    
+                   
+                }}>
+          <View style={style.botao}>
+            <Text style={style.labels}>SALVAR</Text>
+          </View>
+        </TouchableOpacity>
             <Button
                 title="Salvar"
                 onPress={() => {
@@ -107,6 +122,22 @@ const style = StyleSheet.create({
         borderColor: 'gray',
         borderWidth: 1,
         marginBottom: 15,
+        fontSize: 28,
+    },
+    text:{
+      fontSize: 28,
+    },
+    labels: {
+      fontSize: 28,
+    },
+    botao: {
+      margin: 10,
+      width: 250,
+      height: 80,
+      borderRadius: 10,
+      backgroundColor: 'lightblue',
+      justifyContent: 'center',
+      alignItems: 'center'
     }
 })
 

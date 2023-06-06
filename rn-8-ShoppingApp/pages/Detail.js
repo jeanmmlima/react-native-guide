@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, ActivityIndicator, Button } from "react-native"
+import { View, StyleSheet, Text, ActivityIndicator, Button, TouchableOpacity } from "react-native"
 import { useState, useEffect } from 'react';
 import { setStatusBarStyle } from "expo-status-bar";
 
@@ -37,21 +37,6 @@ const Detail = ({ navigation, route }) => {
     }
   }
 
-  const getUserNaAPI = async () => {
-    try {
-      setLoading(true)
-      const uri = 'https://jsonplaceholder.typicode.com/users/' + route.params.id;
-      const response = await fetch(uri);
-      const user = await response.json()
-      setUser(user)
-    } catch (error) {
-      setUser([])
-      alert('Falha ao acessar servidor. Tente novamente mais tarde!')
-    } finally {
-      setLoading(false)
-    }
-  }
-
   const onClick = () => {
     navigation.navigate('ListClients', { credentials: route.params.credentials});
   }
@@ -70,6 +55,16 @@ const Detail = ({ navigation, route }) => {
     <View style={styles.container}>
 
           <Text style={styles.text}> Login: {currentUser.login}</Text>
+          <TouchableOpacity onPress={onClick}>
+          <View style={styles.botao}>
+            <Text style={styles.labels}>Ver lista de clientes</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={loadForm}>
+          <View style={styles.botao}>
+            <Text style={styles.labels}>Novo cliente</Text>
+          </View>
+        </TouchableOpacity>
           <Button title="Ver lista de clientes" onPress={onClick}/>
           <Button title="Novo cliente" onPress={loadForm}/>
         
@@ -85,7 +80,19 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   text: {
-    fontSize: 20
+    fontSize: 28
+  },
+  labels: {
+    fontSize: 28,
+  },
+  botao: {
+    margin: 10,
+    width: 250,
+    height: 80,
+    borderRadius: 10,
+    backgroundColor: 'lightblue',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
 
