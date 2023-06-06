@@ -41,7 +41,10 @@ const Home = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       {isLoading
         ? <ActivityIndicator />
-        : <FlatList data={posts} renderItem={Item} keyExtractor={item => item.id} />
+        : <FlatList 
+        data={posts} 
+        renderItem={Item}
+         keyExtractor={item => item.id} />
       }
     </SafeAreaView>
 
@@ -64,7 +67,8 @@ const styles = StyleSheet.create({
     margin: 8
   },
   titulo: {
-    color: 'white'
+    color: 'white',
+    fontSize: 25,
   }
 });
 
