@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { setStatusBarStyle } from "expo-status-bar";
 import {ListItem, Icon, Button} from 'react-native-elements'
 import { useIsFocused } from "@react-navigation/native";
+import { useContext } from "react";
+import AppContext from "../context/AppContext";
 
 
 const ListClients = ({ navigation, route }) => {
@@ -13,6 +15,7 @@ const ListClients = ({ navigation, route }) => {
   const [isLoading, setLoading] = useState(true)
 
   const [currentUser, setCurrentUser] = useState({});
+  const { state, dispatch } = useContext(AppContext)
 
   const Item = (props) => {
     return (
@@ -34,7 +37,7 @@ const ListClients = ({ navigation, route }) => {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+route.params.credentials.token, 
+          'Authorization': 'Bearer '+state.credentials.token//route.params.credentials.token, 
           
         },
       });
@@ -58,7 +61,7 @@ const ListClients = ({ navigation, route }) => {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+route.params.credentials.token, 
+          'Authorization': 'Bearer '+state.credentials.token//route.params.credentials.token, 
           
         }
       });
@@ -73,7 +76,8 @@ const ListClients = ({ navigation, route }) => {
 
 
   useEffect(() => {
-    setCurrentUser(route.params.credentials);
+    //setCurrentUser(route.params.credentials);
+    setCurrentUser(state.credentials);
     isFocused && getClients();
     
   }, [isFocused]);
@@ -113,7 +117,7 @@ const ListClients = ({ navigation, route }) => {
   }
 
   const loadForm = (user) => {
-    navigation.navigate('FormClient',{ user, credentials: route.params.credentials});
+    navigation.navigate('FormClient',{ user});
   }
 
   function getUserItem({ item: user }){

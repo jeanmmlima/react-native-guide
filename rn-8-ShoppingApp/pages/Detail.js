@@ -1,6 +1,8 @@
 import { View, StyleSheet, Text, ActivityIndicator, Button } from "react-native"
 import { useState, useEffect } from 'react';
 import { setStatusBarStyle } from "expo-status-bar";
+import { useContext } from "react";
+import AppContext from "../context/AppContext";
 
 
 const Detail = ({ navigation, route }) => {
@@ -9,6 +11,7 @@ const Detail = ({ navigation, route }) => {
   const [isLoading, setLoading] = useState(true)
 
   const [currentUser, setCurrentUser] = useState({});
+  const { state, dispatch } = useContext(AppContext)
 
   const registerUser = async (name, passwd) => {
     try {
@@ -53,17 +56,17 @@ const Detail = ({ navigation, route }) => {
   }
 
   const onClick = () => {
-    navigation.navigate('ListClients', { credentials: route.params.credentials});
+    navigation.navigate('ListClients');
   }
 
   const loadForm = () => {
-    navigation.navigate('FormClient',{ credentials: route.params.credentials});
+    navigation.navigate('FormClient');
   }
 
   useEffect(() => {
-    setCurrentUser(route.params.credentials);
-    console.log(route.params.credentials);
-    console.log(currentUser);
+    //setCurrentUser(route.params.credentials);
+    setCurrentUser(state.credentials);
+    console.log(state.credentials);
   }, []);
 
   return (
