@@ -16,7 +16,7 @@ a lista de usuários para toda a aplicação
 const initialState = { credentials: {
     login: "",
     token: "",
-    }
+    },
 }
 
 export const Provider = props => {
