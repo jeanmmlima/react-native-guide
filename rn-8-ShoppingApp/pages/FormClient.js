@@ -1,13 +1,19 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import { Text, View, TextInput, StyleSheet, Button } from "react-native";
+import AppContext from "../context/AppContext";
 
 
 const FormClient = ({ navigation, route }) => {
     console.warn(route.params);
     console.log(route.params);
+
+    const { state, dispatch } = useContext(AppContext)
     
     const [isLoading, setLoading] = useState(false);
     const [user, setUser] = useState(route.params ? (route.params.user ? route.params.user : {}) : {})
+
+    
 
     const saveClient = async () => {
         try {
@@ -18,7 +24,7 @@ const FormClient = ({ navigation, route }) => {
             headers: {
               Accept: 'application/json',
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer '+route.params.credentials.token, 
+              'Authorization': 'Bearer '+state.credentials.token,//+route.params.credentials.token, 
               
             },
             body:JSON.stringify({
@@ -33,7 +39,7 @@ const FormClient = ({ navigation, route }) => {
           console.error(error);
         } finally {
           setLoading(false)
-          navigation.navigate('ListClients', { credentials: route.params.credentials});
+          navigation.navigate('ListClients');
         }
       }
 
@@ -46,7 +52,7 @@ const FormClient = ({ navigation, route }) => {
             headers: {
               Accept: 'application/json',
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer '+route.params.credentials.token, 
+              'Authorization': 'Bearer '+state.credentials.token,//+route.params.credentials.token, 
               
             },
             body:JSON.stringify({
@@ -84,7 +90,7 @@ const FormClient = ({ navigation, route }) => {
                     if(user.id != null){
                         console.log("DEVE ATUALIZAR");
                        updateClient(); 
-                       navigation.navigate('ListClients', { credentials: route.params.credentials});
+                       navigation.navigate('ListClients');
                     } else {
                         saveClient();
                     }
