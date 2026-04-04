@@ -4,22 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const numbers = [1, 2, 3, 4, 5, 6, 7]
-
-const listItems = numbers.map((number) => {
-  return <li>{number}</li>
-})
-
-const element = listItems
-
+function Clock(props) {
+  const element = (
+    <div><h1>Hora: {props.date.toLocaleTimeString()} </h1></div>
+  )
+  return element;
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-
-root.render(
+function tick() {
+  root.render(
   <React.StrictMode>
-    {element}
+    <Clock date={new Date()}/>
   </React.StrictMode>
 );
+}
 
 reportWebVitals();
+setInterval(tick, 1000);
