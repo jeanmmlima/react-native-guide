@@ -13,9 +13,9 @@ export default function App() {
     /* <ImageBackground source={require('./assets/background/bg.jpg')} style={styles.container}>
     <Text style={styles.grande}>Olá</Text>
   </ImageBackground> */
-  <View style={styles.container}>
+   <View style={styles.container}>
       <ImdLogo width={300} height={300} />
-    </View>
+    </View> 
   );
 }
 
